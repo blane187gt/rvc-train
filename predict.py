@@ -21,109 +21,22 @@ from zipfile import ZipFile
 # List of URLs and destinations
 downloads = [
     (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/D32k.pth",
-        "assets/pretrained/D32k.pth",
+        "https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/40k/pretrained/G-f040k-TITAN-Medium.pth",
+        "assets/pretrained_v2/G-f040k-TITAN-Medium.pth",
     ),
     (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/D40k.pth",
-        "assets/pretrained/D40k.pth",
+        "https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/40k/pretrained/D-f040k-TITAN-Medium.pth",
+        "assets/pretrained_v2/D-f040k-TITAN-Medium.pth",
     ),
     (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/D48k.pth",
-        "assets/pretrained/D48k.pth",
+        "https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/32k/pretrained/G-f032k-TITAN-Medium.pth",
+        "assets/pretrained_v2/G-f032k-TITAN-Medium.pth",
     ),
     (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/G32k.pth",
-        "assets/pretrained/G32k.pth",
+        "https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/32k/pretrained/D-f032k-TITAN-Medium.pth",
+        "assets/pretrained_v2/D-f032k-TITAN-Medium.pth",
     ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/G40k.pth",
-        "assets/pretrained/G40k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/G48k.pth",
-        "assets/pretrained/G48k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/f0D32k.pth",
-        "assets/pretrained/f0D32k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/f0D40k.pth",
-        "assets/pretrained/f0D40k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/f0D48k.pth",
-        "assets/pretrained/f0D48k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/f0G32k.pth",
-        "assets/pretrained/f0G32k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/f0G40k.pth",
-        "assets/pretrained/f0G40k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained/f0G48k.pth",
-        "assets/pretrained/f0G48k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/D32k.pth",
-        "assets/pretrained_v2/D32k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/D40k.pth",
-        "assets/pretrained_v2/D40k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/D48k.pth",
-        "assets/pretrained_v2/D48k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/G32k.pth",
-        "assets/pretrained_v2/G32k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/G40k.pth",
-        "assets/pretrained_v2/G40k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/G48k.pth",
-        "assets/pretrained_v2/G48k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/f0D32k.pth",
-        "assets/pretrained_v2/f0D32k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/f0D40k.pth",
-        "assets/pretrained_v2/f0D40k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/f0D48k.pth",
-        "assets/pretrained_v2/f0D48k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/f0G32k.pth",
-        "assets/pretrained_v2/f0G32k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/f0G40k.pth",
-        "assets/pretrained_v2/f0G40k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/pretrained_v2/f0G48k.pth",
-        "assets/pretrained_v2/f0G48k.pth",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/hubert/hubert_base.pt",
-        "assets/hubert/hubert_base.pt",
-    ),
-    (
-        "https://weights.replicate.delivery/default/rvc/assets/rmvpe/rmvpe.pt",
-        "assets/rmvpe/rmvpe.pt",
-    ),
+    
 ]
 
 
@@ -467,11 +380,11 @@ class Predictor(BasePredictor):
 
         # Create Model Folder
         model_name = infer_folder_name("dataset")
-        sample_rate = "40000" if sample_rate == "40k" else "48000"
+        sample_rate = "40000" if sample_rate == "40k" else "32000"
         dataset = "dataset/" + model_name
         exp_dir = model_name
-        ksample_rate = "48k"
-        ksample_rate = "40k" if sample_rate == "40000" else "48k"
+        ksample_rate = "32k"
+        ksample_rate = "40k" if sample_rate == "40000" else "32k"
         save_frequency = 50
         cache_gpu = True
 
@@ -506,18 +419,14 @@ class Predictor(BasePredictor):
 
         # Train Model
         pretrained_paths = {
-            "v1": {
-                "40k": ("assets/pretrained/f0G40k.pth", "assets/pretrained/f0D40k.pth"),
-                "48k": ("assets/pretrained/f0G48k.pth", "assets/pretrained/f0D48k.pth"),
-            },
             "v2": {
                 "40k": (
-                    "assets/pretrained_v2/f0G40k.pth",
-                    "assets/pretrained_v2/f0D40k.pth",
+                    "assets/pretrained_v2/D-f040k-TITAN-Medium.pth",
+                    "assets/pretrained_v2/D-f040k-TITAN-Medium.pth",
                 ),
-                "48k": (
-                    "assets/pretrained_v2/f0G48k.pth",
-                    "assets/pretrained_v2/f0D48k.pth",
+                "32k": (
+                    "assets/pretrained_v2/G-f032k-TITAN-Medium.pth",
+                    "assets/pretrained_v2/D-f032k-TITAN-Medium.pth",
                 ),
             },
         }
