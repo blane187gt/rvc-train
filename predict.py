@@ -36,7 +36,6 @@ downloads = [
         "https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/32k/pretrained/D-f032k-TITAN-Medium.pth",
         "assets/pretrained_v2/D-f032k-TITAN-Medium.pth",
     ),
-    
 ]
 
 
@@ -74,9 +73,7 @@ def execute_command(command):
 def train_index(exp_dir1, version19):
     exp_dir = "logs/%s" % (exp_dir1)
     os.makedirs(exp_dir, exist_ok=True)
-    feature_dir = (
-        "%s/3_feature768" % (exp_dir)
-    )
+    feature_dir = "%s/3_feature768" % (exp_dir)
     if not os.path.exists(feature_dir):
         # return "请先进行特征提取!"
         return "Please perform feature extraction first!"
