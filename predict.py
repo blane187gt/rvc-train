@@ -75,9 +75,7 @@ def train_index(exp_dir1, version19):
     exp_dir = "logs/%s" % (exp_dir1)
     os.makedirs(exp_dir, exist_ok=True)
     feature_dir = (
-        "%s/3_feature256" % (exp_dir)
-        if version19 == "v1"
-        else "%s/3_feature768" % (exp_dir)
+        "%s/3_feature768" % (exp_dir)
     )
     if not os.path.exists(feature_dir):
         # return "请先进行特征提取!"
@@ -361,9 +359,9 @@ class Predictor(BasePredictor):
             description="Upload dataset zip, zip should contain `dataset/<rvc_name>/split_<i>.wav`"
         ),
         sample_rate: str = Input(
-            description="Sample rate", default="48k", choices=["40k", "48k"]
+            description="Sample rate", default="40k", choices=["40k", "32k"]
         ),
-        version: str = Input(description="Version", default="v2", choices=["v1", "v2"]),
+        version: str = Input(description="Version", default="v2", choices=["v2"]),
         f0method: str = Input(
             description="F0 method, `rmvpe_gpu` recommended.",
             default="rmvpe_gpu",
